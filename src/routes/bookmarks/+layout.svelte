@@ -1,7 +1,5 @@
-<script lang="ts">
-	import Layout from '$lib/components/library/layout.svelte';
-</script>
-
-<Layout title="Bookmarks" subtitle="A curated list of articles I've read.">
+<div class="mx-auto container p-4">
+	<h1 class="lg:mt-8 text-4xl lg:text-5xl">Bookmarks</h1>
+	<div class="mt-4 text-lg lg:text-2xl mb-6">Articles and videos that I found interesting.</div>
 	<slot />
-</Layout>
+</div>

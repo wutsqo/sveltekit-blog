@@ -22,3 +22,7 @@ h3 {
 	font-family: 'Archivo', sans-serif;
 	@apply font-bold;
 }
+
+.float-brutalist {
+	@apply shadow-brutalist border border-black;
+}

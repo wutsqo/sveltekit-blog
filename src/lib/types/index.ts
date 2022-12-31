@@ -6,3 +6,11 @@ export interface Book {
 	content?: string;
 	status?: string;
 }
+
+export interface BookmarkItem {
+	id: string;
+	title: string;
+	url: string;
+	comment: string;
+	date: string;
+}
