@@ -29,6 +29,11 @@
 			text: 'Home'
 		},
 		{
+			href: '/bookmarks',
+			color: 'text-yellow-beer',
+			text: 'Bookmarks'
+		},
+		{
 			href: '/library',
 			color: 'text-magenta-cerise',
 			text: 'Library'
