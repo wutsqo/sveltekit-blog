@@ -52,11 +52,6 @@
 			href: '/library',
 			color: 'text-magenta-cerise',
 			text: 'Library'
-		},
-		{
-			href: '/uses',
-			color: 'text-green-carribean',
-			text: 'Uses'
 		}
 	];
 </script>
