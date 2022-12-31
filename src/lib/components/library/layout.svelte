@@ -9,7 +9,7 @@
 	<title>{title} | Muhammad Urwatil Wutsqo</title>
 </svelte:head>
 
-<div class="mx-auto container p-4">
+<div class="mx-auto container p-4 xl:px-12">
 	<h1 class="lg:mt-8 text-4xl lg:text-5xl">
 		<Heading title="Library" />
 		<span class="text-gray-300"> | </span>
