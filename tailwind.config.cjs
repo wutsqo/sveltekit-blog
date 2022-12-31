@@ -14,7 +14,8 @@ module.exports = {
 			},
 			aspectRatio: {
 				'21/9': '21 / 9',
-				'21/3': '21 / 3'
+				'21/3': '21 / 3',
+				'2/3': '2 / 3'
 			},
 			transitionProperty: {
 				height: 'height'

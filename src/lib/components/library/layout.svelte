@@ -14,8 +14,6 @@
 		<Heading title="Library" />
 		<span class="text-gray-300"> | </span>
 		<Heading title="Antilibrary" />
-		<span class="text-gray-300"> | </span>
-		<Heading title="Bookmarks" />
 	</h1>
 	<div class="mt-4 text-lg lg:text-3xl mb-6">{subtitle}</div>
 	<slot />
