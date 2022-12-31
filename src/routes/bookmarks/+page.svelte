@@ -2,6 +2,22 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	let bookmarks = data.bookmarks;
+	let query = '';
+
+	const search = (query: string) => {
+		if (!query) return (bookmarks = data.bookmarks);
+
+		bookmarks = data.bookmarks.filter((item) => {
+			return (
+				item.title.toLowerCase().includes(query.trim().toLowerCase()) ||
+				item.comment.toLowerCase().includes(query.trim().toLowerCase()) ||
+				item.url.toLowerCase().includes(query.trim().toLowerCase())
+			);
+		});
+	};
+
+	$: search(query);
 </script>
 
 <svelte:head>
@@ -9,7 +25,16 @@
 </svelte:head>
 
 <div class="max-w-screen-md flex flex-col gap-4">
-	{#each data.bookmarks as item}
+	<input
+		type="text"
+		class="p-4 block border border-black"
+		placeholder="Search bookmarks..."
+		bind:value={query}
+	/>
+</div>
+
+<div class="max-w-screen-md flex flex-col gap-4 mt-6">
+	{#each bookmarks as item}
 		<a
 			href={item.url}
 			target="_blank"
@@ -30,4 +55,8 @@
 			</p>
 		</a>
 	{/each}
+
+	{#if !bookmarks.length}
+		<p class="text-center text-gray-500">No bookmarks found</p>
+	{/if}
 </div>
