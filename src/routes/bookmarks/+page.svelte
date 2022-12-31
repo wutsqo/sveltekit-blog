@@ -42,7 +42,7 @@
 			class="p-4 block float-brutalist hover:bg-gray-100"
 		>
 			<h2 class="text-xl">{item.title}</h2>
-			<p class="mt-2 text-sm">{item.comment}</p>
+			<p class="mt-4 text-sm text-gray-700">{item.comment}</p>
 			<p class="mt-4 text-xs text-gray-500 truncate w-full">
 				{item.url}
 			</p>
