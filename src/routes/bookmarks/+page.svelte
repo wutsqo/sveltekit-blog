@@ -8,7 +8,7 @@
 	<title>Bookmarks | Muhammad Urwatil Wutsqo</title>
 </svelte:head>
 
-<div class="font-sans max-w-screen-md flex flex-col gap-4">
+<div class="max-w-screen-md flex flex-col gap-4">
 	{#each data.bookmarks as item}
 		<a
 			href={item.url}
@@ -17,7 +17,7 @@
 			class="p-4 block float-brutalist hover:bg-gray-100"
 		>
 			<h2 class="text-xl">{item.title}</h2>
-			<p class="mt-2">{item.comment}</p>
+			<p class="mt-2 text-sm">{item.comment}</p>
 			<p class="mt-4 text-xs text-gray-500 truncate w-full">
 				{item.url}
 			</p>
