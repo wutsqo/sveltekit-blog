@@ -11,8 +11,8 @@
 		isLoading.set(newState);
 	};
 
-	beforeNavigate(() => {
-		setLoading(true);
+	beforeNavigate((navigation) => {
+		if (navigation.to?.route.id) setLoading(true);
 	});
 
 	afterNavigate(() => {
@@ -52,6 +52,11 @@
 			href: '/library',
 			color: 'text-magenta-cerise',
 			text: 'Library'
+		},
+		{
+			href: '/uses',
+			color: 'text-green-carribean',
+			text: 'Uses'
 		}
 	];
 </script>
