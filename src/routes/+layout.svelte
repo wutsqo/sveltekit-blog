@@ -3,6 +3,21 @@
 	import Navlink from '$lib/components/navlink.svelte';
 	import Mondrian from '$lib/components/mondrian.svelte';
 	import { page } from '$app/stores';
+	import { isLoading } from '$lib/store';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import Loader from '$lib/components/loader.svelte';
+
+	const setLoading = (newState: boolean): void => {
+		isLoading.set(newState);
+	};
+
+	beforeNavigate(() => {
+		setLoading(true);
+	});
+
+	afterNavigate(() => {
+		setLoading(false);
+	});
 
 	let contacts = [
 		{
@@ -42,6 +57,8 @@
 </script>
 
 <div class="app relative overflow-hidden min-h-screen bg-black py-2 md:px-2">
+	<Loader loading={$isLoading} />
+
 	<header class="relative">
 		<nav class="flex justify-between items-center text-white px-4 py-4 pb-12 lg:pb-4">
 			<a href="/" class="hidden sm:inline-flex text-2xl">
