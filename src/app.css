@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&family=Chivo+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	font-family: 'Chivo Mono', monospace;
+	min-height: 100vh;
+}
+
+h1 {
+	font-family: 'Archivo', sans-serif;
+	@apply font-bold;
+}
+
+h2 {
+	font-family: 'Archivo', sans-serif;
+	@apply font-bold;
+}
+
+h3 {
+	font-family: 'Archivo', sans-serif;
+	@apply font-bold;
+}
