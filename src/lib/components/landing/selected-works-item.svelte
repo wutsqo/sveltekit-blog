@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { FxReveal as Img } from '@zerodevx/svelte-img'
+
 	export let title: string;
 	export let description: string;
-	export let img: string;
+	export let img: any[];
 	export let icons: string[];
 	export let label: string;
 	export let href: string;
@@ -10,7 +12,7 @@
 <div
 	class="border-2 border-black shadow-brutalist hover:shadow-none hover:translate-x-1 hover:translate-y-1 w-full max-w-sm"
 >
-	<img src={img} alt={title} />
+	<Img src={img} alt={title} />
 
 	<div class="p-4">
 		<a {href} target="_blank" rel="noopener noreferrer">

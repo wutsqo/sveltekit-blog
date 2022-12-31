@@ -1,11 +1,14 @@
 <script lang="ts">
 	import Heading from './heading.svelte';
 	import SelectedWorksItem from './selected-works-item.svelte';
+	import dewa19 from '$lib/assets/dewa19.png?run';
+	import purwalenta from '$lib/assets/purwalenta.png?run';
+	import pmb from '$lib/assets/pmb.png?run';
 
 	let items = [
 		{
 			title: 'Konser 30 Tahun Dewa 19',
-			img: '/works/dewa19.png',
+			img: dewa19,
 			description: 'An official page containing information about the concert and ticket purchase.',
 			icons: ['ts.svg', 'react.svg', 'gatsby.svg', 'tailwind.svg', 'styled.svg'],
 			label: 'Landing Page',
@@ -13,7 +16,7 @@
 		},
 		{
 			title: 'Purwalenta Website',
-			img: '/works/purwalenta.png',
+			img: purwalenta,
 			description: 'An education platform to empower content creator talents in Indonesia.',
 			icons: ['django.svg', 'sql.svg', 'gatsby.svg', 'styled.svg', 'figma.svg'],
 			label: 'App/Product',
@@ -21,7 +24,7 @@
 		},
 		{
 			title: 'Pansos PMB Fasilkom UI 2021',
-			img: '/works/pmb.png',
+			img: pmb,
 			description: 'A one-stop onboarding platform for the new students of Fasilkom UI.',
 			icons: ['ts.svg', 'node.svg', 'sql.svg', 'prisma.svg', 'aws.svg'],
 			label: 'Backend/API',
