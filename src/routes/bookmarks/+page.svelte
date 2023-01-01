@@ -43,63 +43,64 @@
 	<title>Bookmarks | Muhammad Urwatil Wutsqo</title>
 </svelte:head>
 
-<div class="max-w-screen-md flex flex-col gap-4">
-	<input
-		type="text"
-		class="p-4 block border border-black"
-		placeholder="Search bookmarks..."
-		bind:value={query}
-	/>
-	<div class="flex flex-wrap gap-2">
-		<button
-			class="px-3 py-1 text-xs border border-gray-500 text-gray-700"
-			on:click={() => (query = '')}
-		>
-			All
-		</button>
-		{#each allTags as tag}
-			<button
-				class="px-3 py-1 text-xs border border-gray-500 text-gray-700"
-				on:click={() => (query = `#${tag}`)}
-			>
-				{tag}
-			</button>
-		{/each}
-	</div>
-</div>
-
-<div class="max-w-screen-md flex flex-col gap-4 mt-6">
-	{#each bookmarks as item}
-		<a
-			href={item.url}
-			target="_blank"
-			rel="noopener noreferrer"
-			class="px-4 py-6 block float-brutalist hover:bg-gray-100"
-		>
-			<h2 class="text-xl">{item.title}</h2>
-			<!-- <div class="mt-2">
-				{#each item.tags as tag}
-					<span class="inline-block px-3 py-1 text-xs border border-gray-500 text-gray-700 mr-2">
-						{tag.name}
-					</span>
+<div class="mx-auto container p-4 xl:px-12 xl:grid xl:grid-cols-5 xl:gap-8 xl:py-8">
+	<div class="xl:col-span-2 xl:sticky xl:top-0 self-start">
+		<h1 class="lg:mt-8 text-4xl lg:text-5xl">Bookmarks</h1>
+		<div class="mt-4 text-lg lg:text-2xl mb-6">
+			Articles and videos that I found interesting. ({bookmarks.length})
+		</div>
+		<div class="max-w-screen-md flex flex-col gap-4">
+			<input
+				type="text"
+				class="p-4 block border border-black"
+				placeholder="Search bookmarks..."
+				bind:value={query}
+			/>
+			<div class="flex flex-wrap gap-2">
+				<button
+					class="px-3 py-1 text-xs border border-gray-700 text-gray-700 hover:bg-yellow-beer"
+					on:click={() => (query = '')}
+				>
+					All
+				</button>
+				{#each allTags as tag}
+					<button
+						class="px-3 py-1 text-xs border border-gray-700 text-gray-700 hover:bg-yellow-beer"
+						on:click={() => (query = `#${tag}`)}
+					>
+						{tag}
+					</button>
 				{/each}
-			</div> -->
+			</div>
+		</div>
+	</div>
+	<div class="xl:px-4 xl:pb-6 xl:col-span-3">
+		<div class="max-w-screen-md flex flex-col gap-4 mt-6">
+			{#each bookmarks as item}
+				<a
+					href={item.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="px-4 xl:px-6 py-6 block float-brutalist bg-white hover:bg-gray-100"
+				>
+					<h2 class="text-xl">{item.title}</h2>
+					<p class="mt-4 text-sm text-gray-700">{item.comment}</p>
+					<p class="mt-4 text-xs text-gray-500 truncate w-full">
+						{item.url}
+					</p>
+					<p class="text-xs text-gray-500">
+						Bookmarked at {new Date(item.date).toLocaleDateString('en-US', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</p>
+				</a>
+			{/each}
 
-			<p class="mt-4 text-sm text-gray-700">{item.comment}</p>
-			<p class="mt-4 text-xs text-gray-500 truncate w-full">
-				{item.url}
-			</p>
-			<p class="text-xs text-gray-500">
-				Bookmarked at {new Date(item.date).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
-				})}
-			</p>
-		</a>
-	{/each}
-
-	{#if !bookmarks.length}
-		<p class="text-center text-gray-500">No bookmarks found</p>
-	{/if}
+			{#if !bookmarks.length}
+				<p class="text-center text-gray-500">No bookmarks found</p>
+			{/if}
+		</div>
+	</div>
 </div>

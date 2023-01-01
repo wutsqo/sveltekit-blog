@@ -56,7 +56,7 @@
 	];
 </script>
 
-<div class="app relative overflow-hidden min-h-screen bg-black py-2 md:px-2">
+<div class="app relative min-h-screen bg-black py-2 md:px-2">
 	<Loader loading={$isLoading} />
 
 	<header class="relative">
@@ -88,7 +88,7 @@
 		</div>
 	</header>
 
-	<main class="bg-white py-8 min-h-screen">
+	<main class="bg-white py-8 pb-36">
 		<slot />
 	</main>
 
