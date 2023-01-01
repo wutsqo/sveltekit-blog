@@ -15,7 +15,8 @@ export const load: PageServerLoad = async () => {
 			title: '',
 			url: '',
 			comment: '',
-			date: ''
+			date: '',
+			tags: []
 		};
 
 		if ('properties' in result) {
@@ -30,6 +31,14 @@ export const load: PageServerLoad = async () => {
 			}
 			if ('date' in result.properties.Date) {
 				bookmark.date = result.properties.Date.date?.start ?? '';
+			}
+			if ('multi_select' in result.properties.Tags) {
+				bookmark.tags = result.properties.Tags.multi_select.map((tag) => {
+					return {
+						id: tag.id,
+						name: tag.name
+					};
+				});
 			}
 
 			bookmarks.push(bookmark);
