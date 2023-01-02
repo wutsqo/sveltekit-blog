@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { crossfade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	export let data: PageData;
 	let bookmarks = data.bookmarks;
@@ -37,6 +39,14 @@
 		.filter((item, index, self) => self.indexOf(item) === index);
 
 	$: search(query);
+
+	const [send, receive] = crossfade({
+		duration: (t) => Math.sqrt(t * 500),
+		fallback: () => ({
+			duration: 500,
+			css: (t) => `opacity: ${t}`
+		})
+	});
 </script>
 
 <svelte:head>
@@ -44,7 +54,7 @@
 </svelte:head>
 
 <div class="mx-auto container p-4 xl:px-12 xl:grid xl:grid-cols-5 xl:gap-8 xl:py-8">
-	<div class="xl:col-span-2 xl:sticky xl:top-0 self-start">
+	<div class="xl:col-span-2 xl:sticky xl:top-0 self-start xl:min-h-screen">
 		<h1 class="lg:mt-8 text-4xl lg:text-5xl">Bookmarks</h1>
 		<div class="mt-4 text-lg lg:text-2xl mb-6">
 			Articles and videos that I found interesting. ({bookmarks.length})
@@ -76,12 +86,17 @@
 	</div>
 	<div class="xl:px-4 xl:pb-6 xl:col-span-3">
 		<div class="max-w-screen-md flex flex-col gap-4 mt-6">
-			{#each bookmarks as item}
+			{#each bookmarks as item (item.id)}
 				<a
 					href={item.url}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="px-4 xl:px-6 py-6 block float-brutalist bg-white hover:bg-gray-100"
+					in:receive={{ key: item.id }}
+					out:send={{ key: item.id }}
+					animate:flip={{
+						duration: (t) => Math.sqrt(t * 500)
+					}}
 				>
 					<h2 class="text-xl">{item.title}</h2>
 					<p class="mt-4 text-sm text-gray-700">{item.comment}</p>
