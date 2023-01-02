@@ -89,7 +89,7 @@
 						{item.url}
 					</p>
 					<p class="text-xs text-gray-500">
-						Bookmarked at {new Date(item.date).toLocaleDateString('en-US', {
+						Bookmarked on {new Date(item.date).toLocaleDateString('en-US', {
 							year: 'numeric',
 							month: 'long',
 							day: 'numeric'
