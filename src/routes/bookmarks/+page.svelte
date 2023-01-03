@@ -73,7 +73,7 @@
 				placeholder="Search bookmarks..."
 				bind:value={query}
 			/>
-			<div class="flex xl:flex-wrap overflow-auto gap-2 ml-4 pb-2">
+			<div class="flex xl:flex-wrap overflow-auto xl:gap-2 px-4 pb-2">
 				<button
 					class="px-3 py-1 text-xs border border-gray-700 text-gray-700 hover:bg-yellow-beer"
 					on:click={() => onTagClick('')}
@@ -82,7 +82,7 @@
 				</button>
 				{#each allTags as tag}
 					<button
-						class="px-3 py-1 text-xs border border-gray-700 text-gray-700 hover:bg-yellow-beer shrink-0"
+						class="px-3 py-1 text-xs border-y border-r xl:border border-gray-700 text-gray-700 hover:bg-yellow-beer shrink-0"
 						on:click={() => onTagClick(`#${tag}`)}
 					>
 						{tag}
