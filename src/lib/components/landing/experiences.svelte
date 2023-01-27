@@ -5,6 +5,12 @@
 	let experiences = [
 		{
 			title: 'Software Engineer',
+			company: 'Rey.id',
+			date: 'Jan 2023 — Present',
+			desc: []
+		},
+		{
+			title: 'Software Engineer',
 			company: 'Moflip',
 			date: 'Mar 2022 — Oct 2022',
 			desc: [
