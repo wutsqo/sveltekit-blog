@@ -1,80 +1,172 @@
 <script lang="ts">
-	import axios from 'axios';
 	import Heading from './heading.svelte';
-	import { onMount } from 'svelte';
-	import MusicPlayingIcon from './music-playing.svelte';
-	import SpotifyIcon from './spotify-icon.svelte';
+	import { Map } from '@beyonk/svelte-mapbox';
+	import viewport from '$lib/useViewportAction';
+	let map: any;
 
-	let trackData: any;
+	const style = 'mapbox://styles/wutsqo/clecs3mtt001201p0cghlbuc3';
+	let zoom = 13;
 
-	onMount(async () => {
-		const fetchData = () =>
-			axios.get('/api/spotify/recent').then((res) => {
-				trackData = res.data;
+	const jakarta = {
+		center: [106.8310265, -6.149408],
+		zoom: 12
+	};
+
+	const padang = {
+		center: [100.3672959, -0.9256446],
+		zoom: 12
+	};
+
+	let step = 0;
+
+	const locations = [padang, jakarta];
+
+	const enterViewport = () => {
+		if (step === 0) {
+			map.flyTo(padang, {
+				duration: 2000
 			});
+		} else {
+			map.flyTo(jakarta, {
+				duration: 2000
+			});
+		}
+	};
 
-		fetchData();
-		const interval = setInterval(fetchData, 10000);
+	const zoomIn = () => {
+		zoom = zoom + 3;
+		map.flyTo(
+			{
+				...locations[step],
+				zoom
+			},
+			{
+				duration: 2000
+			}
+		);
+	};
 
-		return () => clearInterval(interval);
-	});
+	const zoomOut = () => {
+		zoom = zoom - 3;
+		map.flyTo(
+			{
+				...locations[step],
+				zoom
+			},
+			{
+				duration: 2000
+			}
+		);
+	};
+
+	const phrases = [
+		'Grew up in a beautiful region of West Sumatra, I started to find my passion in technology and design since I was a kid.',
+		'Graduated from high school, I moved to Jakarta and my love for tech and design has grown stronger ever since.',
+	];
+	let phrase = phrases[0];
+	let words = phrase.split(' ');
+
+	let typedChar = '';
+	let index = 0;
+	let typewriter: string | number | NodeJS.Timer | undefined;
+	let displayed = false;
+	let isTyping = false;
+
+	const typeChar = () => {
+		if (index < words.length) {
+			typedChar += words[index];
+			typedChar += ' ';
+			index += 1;
+		} else {
+			stopTyping();
+			displayed = true;
+			return;
+		}
+	};
+
+	const typing = () => {
+		if (!isTyping) {
+			isTyping = true;
+			typewriter = setInterval(typeChar, 120);
+		}
+	};
+
+	const stopTyping = () => {
+		clearInterval(typewriter);
+		isTyping = false;
+	};
 </script>
 
 <Heading number="IV" text="About" />
 
-<div class="mx-auto w-full max-w-3xl p-4">
-	<p class="text-lg">
-		My name is Wutsqo. I'm a <span class="font-semibold">creative developer</span>
-		and currently based in Jakarta, Indonesia. I'm really into frontend development, digital product
-		design, and optimizing code.
-	</p>
-
-	<div class="my-8 flex h-24 w-full border-2 border-black md:h-40">
-		<img
-			src={trackData?.item.album.images[1].url}
-			alt={trackData?.item.name}
-			class="aspect-square h-full border-r-2 border-black"
-		/>
-
-		<div class="relative flex w-full flex-col justify-end p-2 pl-3 md:p-4 md:pl-6">
-			<div class="absolute top-2 right-3 md:top-4 md:left-6">
-				<SpotifyIcon />
-			</div>
-
-			<div class="flex h-full flex-col justify-between md:justify-end">
-				{#if trackData?.item?.id}
-					<div class="mb-1 flex items-baseline gap-2 text-xs font-medium text-gray-700 md:text-sm">
-						<MusicPlayingIcon />
-						{#if trackData?.type === 'current'}
-							<span> Now playing </span>
-						{:else if trackData?.type === 'recent'}
-							<span> Last played </span>
-						{/if}
-					</div>
-
-					<p class="text-sm">
-						<a
-							href="https://open.spotify.com/track/{trackData?.item?.id}"
-							class="text-base font-semibold text-black hover:underline md:text-xl"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{trackData?.item?.name}
-						</a>
-						<br />
-						<a
-							href="https://open.spotify.com/artist/{trackData?.item?.artists[0].id}"
-							class="text-sm text-black hover:underline md:text-base"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{trackData?.item?.artists[0].name}
-						</a>
-					</p>
-				{:else}
-					<span class="text-sm"> Retrieving data from Spotify...</span>
-				{/if}
-			</div>
+<div class="relative">
+	<div class="relative h-[120vh]" use:viewport on:enterViewport={enterViewport}>
+		<div class="h-full w-full bg-black">
+			<Map
+				accessToken="pk.eyJ1Ijoid3V0c3FvIiwiYSI6ImNsZWNwNXNqOTAwaXc0Mm1sc3VzOWEyZWEifQ.YcZR_USFcNObmZtviLB_Fw"
+				{style}
+				bind:this={map}
+			/>
 		</div>
 	</div>
+	<div
+		class="absolute top-0 h-[120vh] w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/70 to-black p-4 text-lg text-white xl:p-8 xl:text-xl"
+		use:viewport
+		on:enterViewport={typing}
+	>
+		<p class="max-w-xl pt-24">
+			{typedChar}
+			<br />
+			<button
+				class="mt-8"
+				style="display: {isTyping ? 'none' : 'block'}"
+				on:click={() => {
+					index = 0;
+					typedChar = '';
+					displayed = false;
+					typing();
+
+					step = step + 1;
+					if (step > 1) {
+						step = 0;
+					}
+					phrase = phrases[step];
+					words = phrase.split(' ');
+
+					if (step === 0) {
+						map.flyTo(padang, {
+							duration: 2000
+						});
+					} else {
+						map.flyTo(jakarta, {
+							duration: 2000
+						});
+					}
+				}}
+			>
+				{#if step === 0}
+					Next &rarr;
+				{:else}
+					&larr; Back
+				{/if}
+			</button>
+		</p>
+		<div class="absolute bottom-0 left-0 z-10 h-8 w-full bg-white" />
+		<!-- <div
+			class="absolute left-0 bottom-16 z-10 flex h-20 w-full items-end justify-center p-2 text-white"
+		>
+			<button on:click={zoomOut} class="map-control" disabled={zoom <= 3}>-</button>
+			<button on:click={zoomIn} class="map-control" disabled={zoom >= 15}>+</button>
+		</div> -->
+	</div>
 </div>
+
+<style>
+	.map-control {
+		@apply flex h-6 w-6 items-center justify-center border border-black bg-white font-sans text-black;
+	}
+
+	.map-control:disabled {
+		@apply text-gray-500;
+	}
+</style>

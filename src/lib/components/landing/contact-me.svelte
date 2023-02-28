@@ -1,4 +1,8 @@
 <script lang="ts">
+	import Github from '$lib/icons/github.svelte';
+	import Instagram from '$lib/icons/instagram.svelte';
+	import Linkedin from '$lib/icons/linkedin.svelte';
+	import Twitter from '$lib/icons/twitter.svelte';
 	import Heading from './heading.svelte';
 
 	let m = { x: 0, y: 0 };
@@ -21,50 +25,66 @@
 	}
 </script>
 
-<Heading number="V" text="Contact" />
+<Heading number="V" text="Connect" />
 
-<div class="w-full max-w-3xl mx-auto p-4">
-	<!-- <h3 class="text-xl">Availability</h3> -->
+<div class="p-4 xl:px-8">
 	<p class="mt-1 text-lg">
-		I'm currently <span class="font-bold underline decoration-magenta-cerise decoration-2">
-			available
-		</span> to take on freelance projects on a case-by-case basis. Reach out and touch faith. ↓
+		I am glad to connect, so come say hello and have a chat about working together (or simply just
+		to chill on the weekend) →
 	</p>
 </div>
 
-<div class="w-full max-w-3xl mx-auto p-4">
-	<div
-		class="flex h-48 items-center justify-center p-16 border-black border-2"
-		on:mousemove={handleMousemove}
-	>
-		{#if !hovered}
-			<a
-				href="mailto:urwatilwutsqo16@gmail.com"
-				class="border-2 border-black px-4 py-4 text-2xl w-52 bg-white block hover:bg-black hover:text-white text-center"
-			>
-				CONTACT ME
-			</a>
-		{/if}
-	</div>
-
-	<div class="w-full overflow-hidden">
-		{#each coordinateHistory as coordinate}
-			<div
-				class="absolute bg-white -translate-x-1/2 -translate-y-1/2"
-				style="top: {coordinate.y}px; left: {coordinate.x}px;"
-			>
+<div class="grid grid-cols-2 gap-4 p-4 md:grid-cols-3 xl:px-8">
+	<div class="col-span-2 row-span-2 bg-yellow-beer">
+		<div class="box flex h-48 items-center justify-center p-16" on:mousemove={handleMousemove}>
+			{#if !hovered}
 				<a
 					href="mailto:urwatilwutsqo16@gmail.com"
-					class="border-2 border-black px-4 py-4 text-2xl w-52 bg-white block hover:bg-black hover:text-white text-center"
+					class="block w-52 border-2 border-black bg-white px-4 py-4 text-center text-2xl hover:bg-black hover:text-white"
 				>
 					CONTACT ME
 				</a>
-			</div>
-		{/each}
-	</div>
+			{/if}
+		</div>
 
-	<!-- <p>
-		I’m most active and reachable via email. You can also check out my resume, if you’re into that
-		sort of thing.
-	</p> -->
+		<div class="w-full overflow-hidden">
+			{#each coordinateHistory as coordinate}
+				<div
+					class="absolute -translate-x-1/2 -translate-y-1/2 bg-white"
+					style="top: {coordinate.y}px; left: {coordinate.x}px;"
+				>
+					<a
+						href="mailto:urwatilwutsqo16@gmail.com"
+						class="block w-52 border-2 border-black bg-white px-4 py-4 text-center text-2xl hover:bg-black hover:text-white"
+					>
+						CONTACT ME
+					</a>
+				</div>
+			{/each}
+		</div>
+	</div>
+	<div class="box group bg-github-black">
+		<a href="https://github.com/wutsqo " target="_blank" rel="noopener noreferrer">
+			<Github className="h-8 w-8 group-hover:scale-125 transition-all duration-500" fill="white" />
+		</a>
+	</div>
+	<div class="box group bg-linkedin-blue">
+		<a href="https://www.linkedin.com/in/wutsqo/" target="_blank" rel="noopener noreferrer">
+			<Linkedin
+				className="h-8 w-8 group-hover:scale-125 transition-all duration-500"
+				fill="white"
+			/>
+		</a>
+	</div>
 </div>
+
+<style>
+	.box {
+		min-height: 8rem;
+		@apply h-full border-2 border-black;
+	}
+
+	.box > a {
+		@apply flex h-full w-full items-center justify-center;
+	}
+</style>

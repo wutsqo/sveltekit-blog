@@ -64,7 +64,7 @@
 			src: '/stack/gatsby.svg'
 		},
 		{
-			name: 'Styled Component',
+			name: 'Styled',
 			src: '/stack/styled.svg'
 		},
 		{
@@ -90,7 +90,7 @@
 		'Design Patterns',
 		'TDD',
 		'Agile Methodology',
-		'UI/UX Design',
+		'Digital Product Design',
 		'Communication & Teamwork'
 	];
 </script>
@@ -98,17 +98,116 @@
 <Heading number="II" text="Expertise" />
 
 <div
-	class="max-w-screen-lg mx-auto container sm:justify-center text-center sm:flex sm:flex-row flex-wrap sm:gap-y-6 sm:gap-x-10 mt-6 text-sm md:text-base p-4"
+	class="container mt-6 flex-wrap items-baseline p-4 text-sm sm:flex sm:flex-row sm:gap-y-6 sm:gap-x-10 md:text-base xl:px-8"
 >
 	{#each skills as skill}
-		<div class="inline sm:block">{skill}<span class="sm:hidden">. </span></div>
+		<div class="inline first:text-xl xl:first:text-3xl sm:block">{skill}<span class="sm:hidden">. </span></div>
 	{/each}
 </div>
 
-<div class="max-w-screen-lg mx-auto px-4 container justify-center flex flex-wrap gap-8 mt-12">
-	{#each stacks as stack}
-		<StackItem src={stack.src} name={stack.name} />
-	{/each}
+<div class="mt-8">
+	<div class="m-scroll bg-gradient-to-r from-green-carribean via-yellow-beer to-magenta-cerise">
+		<div class="m-scroll__title m-scroll__title--first">
+			<div class="flex gap-8 p-4">
+				{#each stacks as stack}
+					<StackItem src={stack.src} name={stack.name} />
+				{/each}
+				{#each stacks as stack}
+					<StackItem src={stack.src} name={stack.name} />
+				{/each}
+				{#each stacks as stack}
+					<StackItem src={stack.src} name={stack.name} />
+				{/each}
+			</div>
+		</div>
+	</div>
 </div>
 
-<div class="text-center mt-8">++ and many more</div>
+<style>
+	.m-scroll {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		position: relative;
+		width: 100%;
+		height: 8rem;
+		margin: auto;
+		overflow: hidden;
+		z-index: 1;
+	}
+
+	.m-scroll__link:hover .m-scroll__title div {
+		-webkit-animation-play-state: paused;
+		animation-play-state: paused;
+	}
+
+	.m-scroll__title {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+		width: 100%;
+		height: 100%;
+		white-space: nowrap;
+		border-bottom: 2px solid #000;
+	}
+	.m-scroll__title--first {
+		border-top: 2px solid #000;
+	}
+	.m-scroll__title div {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-animation: scrollText 30s infinite linear;
+		animation: scrollText 30s infinite linear;
+	}
+
+	@-webkit-keyframes scrollText {
+		from {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+		to {
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+		}
+	}
+	@keyframes scrollText {
+		from {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+		to {
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+		}
+	}
+	@-webkit-keyframes scrollTextRight {
+		from {
+			-webkit-transform: translateX(-100%);
+			transform: translateX(-100%);
+		}
+		to {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+	}
+	@keyframes scrollTextRight {
+		from {
+			-webkit-transform: translateX(-100%);
+			transform: translateX(-100%);
+		}
+		to {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+	}
+</style>

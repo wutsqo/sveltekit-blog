@@ -4,12 +4,16 @@
 
 	let experiences = [
 		{
-			title: 'Software Engineer',
+			id: 1,
+			title: 'Software Engineer Intern',
 			company: 'Rey.id',
 			date: 'Jan 2023 — Present',
-			desc: []
+			desc: [
+				'Description coming soon...'
+			]
 		},
 		{
+			id: 2,
 			title: 'Software Engineer',
 			company: 'Moflip',
 			date: 'Mar 2022 — Oct 2022',
@@ -19,17 +23,19 @@
 				'Developed the frontend part of TiketNFT.com and Bolafy Apps.'
 			]
 		},
+		// {
+		// 	id: 3,
+		// 	title: 'Teaching Assistant',
+		// 	company: 'Fasilkom UI',
+		// 	date: 'Aug 2021 — Jun 2022',
+		// 	desc: [
+		// 		'TA for Platform-Based Programming Course (Term 1 & 2, AY 2021/2022)',
+		// 		'Assisted students in learning the course material and assignments.',
+		// 		'Graded students’ group and individual assignments, and lab sessions.'
+		// 	]
+		// },
 		{
-			title: 'Teaching Assistant',
-			company: 'Faculty of Computer Science, UI',
-			date: 'Aug 2021 — Jun 2022',
-			desc: [
-				'TA for Platform-Based Programming Course (Term 1 & 2, AY 2021/2022)',
-				'Assisted students in learning the course material and assignments.',
-				'Graded students’ group and individual assignments, and lab sessions.'
-			]
-		},
-		{
+			id: 3,
 			title: 'Web Developer',
 			company: 'Purwalenta.com',
 			date: 'Dec 2021 — Mar 2022',
@@ -39,8 +45,9 @@
 			]
 		},
 		{
+			id: 4,
 			title: 'Web Developer',
-			company: 'Faculty of Computer Science, UI',
+			company: 'Fasilkom UI',
 			date: 'Oct 2021 — Dec 2021',
 			desc: [
 				'Developed new features of an internal app for the faculty to manage the thesis submission process.',
@@ -48,6 +55,7 @@
 			]
 		},
 		{
+			id: 5,
 			title: 'Web Developer',
 			company: 'Ristek Fasilkom UI',
 			date: 'Mar 2021 - Feb 2022',
@@ -57,13 +65,35 @@
 			]
 		}
 	];
+
+	let selected = 1;
 </script>
 
 <Heading number="III" text="Professional Experiences" />
 
-<div class="flex flex-col w-full max-w-3xl m-4 mx-auto divide-y-2 divide-black px-4 divide">
-	{#each experiences as experience}
-		<ExperiencesItem {experience} />
-	{/each}
-	<hr class="divide-x-2" />
+<div class="grid grid-cols-1 gap-4 p-4 xl:grid-cols-2 xl:px-8">
+	<div class="divide flex flex-col divide-y-2 divide-black">
+		{#each experiences as experience}
+			<ExperiencesItem
+				{experience}
+				open={selected === experience.id}
+				on:click={() => {
+					selected = experience.id;
+				}}
+			/>
+		{/each}
+		<hr class="divide-x-2" />
+	</div>
+	<div class="hidden border-2 border-black p-4 xl:block xl:px-6">
+		<div class="text-xl font-semibold">
+			{experiences[selected - 1].title} @
+			<span class="font-normal"> {experiences[selected - 1].company}</span>
+		</div>
+		<div class="text-sm text-gray-500">{experiences[selected - 1].date}</div>
+		<ul class="mt-6 list-inside list-disc">
+			{#each experiences[selected - 1].desc as desc}
+				<li>{desc}</li>
+			{/each}
+		</ul>
+	</div>
 </div>

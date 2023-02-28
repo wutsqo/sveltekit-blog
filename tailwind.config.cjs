@@ -7,7 +7,11 @@ module.exports = {
 				'magenta-cerise': '#DA1D7E',
 				'yellow-beer': '#F8B725',
 				'bluish-purple': '#885EDD',
-				'green-carribean': '#23C8A0'
+				'green-carribean': '#23C8A0',
+				'twitter-blue': '#1DA1F2',
+				'instagram-pink': '#E1306C',
+				'linkedin-blue': '#0077B5',
+				'github-black': '#24292E'
 			},
 			boxShadow: {
 				brutalist: '4px 4px #000'

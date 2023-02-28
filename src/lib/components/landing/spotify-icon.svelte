@@ -1,5 +1,5 @@
 <svg
-	class="h-4 w-4 md:h-6 md:w-6"
+	class="h-4 w-4"
 	width="256"
 	height="256"
 	viewBox="0 0 256 256"

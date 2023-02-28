@@ -3,25 +3,26 @@
 	import Stack from '$lib/components/landing/stack.svelte';
 	import About from '$lib/components/landing/about.svelte';
 	import Experiences from '$lib/components/landing/experiences.svelte';
-	import Hero from '$lib/components/landing/hero.svelte';
-	import Writings from '$lib/components/landing/writings.svelte';
-	import More from '$lib/components/landing/more.svelte';
 	import ContactMe from '$lib/components/landing/contact-me.svelte';
-
-	let scrollY: number;
+	import Side from '$lib/components/landing/side.svelte';
+	import Hero from '$lib/components/landing/hero.svelte';
 </script>
 
 <svelte:head>
 	<title>Muhammad Urwatil Wutsqo</title>
 </svelte:head>
 
-<Hero />
-<SelectedWorks />
-<Stack />
-<Experiences />
-<About />
-<ContactMe />
-<Writings />
-<More />
-
-<svelte:window bind:scrollY />
+<div class="flex flex-col xl:flex-row">
+	<div class="w-full xl:w-1/3">
+		<Side />
+	</div>
+	<div class="w-full xl:w-2/3">
+		<Hero />
+		<SelectedWorks />
+		<Stack />
+		<Experiences />
+		<About />
+		<ContactMe />
+		<div class="h-32" />
+	</div>
+</div>

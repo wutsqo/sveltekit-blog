@@ -53,20 +53,30 @@
 			color: 'text-magenta-cerise',
 			text: 'Library'
 		}
+		// {
+		// 	href: '/journal',
+		// 	color: 'text-bluish-purple',
+		// 	text: 'Journal'
+		// }
 	];
+
+	let scrollY: number;
 </script>
 
-<div class="app relative min-h-screen bg-black py-2 md:px-2">
+<div class="app relative min-h-screen bg-black md:px-2">
 	<Loader loading={$isLoading} />
 
-	<header class="relative">
-		<nav class="flex justify-between items-center text-white px-4 py-4 pb-12 lg:pb-4">
-			<a href="/" class="hidden sm:inline-flex text-2xl">
+	<header
+		class="sticky top-0 z-50 h-16 border-t-4 border-black transition-colors duration-100"
+		style="background-color: {scrollY > 30 ? 'white' : 'black'};"
+	>
+		<nav class="flex h-full items-center justify-between px-4">
+			<a href="/" class="hidden text-2xl sm:inline-flex">
 				<span class="text-bluish-purple">W</span>
 				<span class="text-yellow-beer">W</span>
 				<span class="text-magenta-cerise">WUTSQO</span>
 			</a>
-			<div class="flex gap-8 justify-between w-full sm:justify-end text-base">
+			<div class="flex w-full justify-between gap-8 text-base sm:justify-end">
 				{#each navlinks as url}
 					<Navlink href={url.href} color={url.color}>
 						{url.text}
@@ -74,29 +84,23 @@
 				{/each}
 			</div>
 		</nav>
-		{#if $page.route.id === '/'}
-			<div
-				class="absolute left-0 right-0 bg-white text-black mx-auto w-fit sm:w-96 border-2 z-50
-						border-black text-center p-2 text-xl md:text-2xl uppercase font-bold -translate-y-1/2"
-				style="box-shadow: 5px 5px #000;"
-			>
-				Muhammad Urwatil Wutsqo
-			</div>
-		{/if}
-		<div class="absolute top-20">
-			<Mondrian refresh={`${$page.route.id}`} />
-		</div>
 	</header>
 
-	<main class="bg-white py-8 pb-36">
+	<hr class="fixed top-16 z-30 w-screen border-2 border-black" />
+
+	<div class="absolute top-20 z-10">
+		<Mondrian refresh={`${$page.route.id}`} />
+	</div>
+
+	<main class="bg-white">
 		<slot />
 	</main>
 
-	<footer class="bg-black text-white w-full bottom-0">
+	<footer class="bottom-0 w-full bg-black text-white">
 		<div class="relative">
 			<Mondrian refresh={`${$page.route.id}`} />
 		</div>
-		<div class="flex h-24 items-center justify-center text-xl gap-8 mt-6">
+		<div class="mt-6 flex h-24 items-center justify-center gap-8 text-xl">
 			{#each contacts as contact}
 				<Navlink href={contact.href} color={contact.color} target="_blank">
 					{contact.text}
@@ -104,8 +108,10 @@
 			{/each}
 		</div>
 
-		<div class="text-center text-xs text-gray-300 py-8">
+		<div class="py-8 text-center text-xs text-gray-300">
 			Made with <span class="text-red-500">❤</span> by Muhammad Urwatil Wutsqo
 		</div>
 	</footer>
 </div>
+
+<svelte:window bind:scrollY />

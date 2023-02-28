@@ -3,38 +3,46 @@
 	export let open = false;
 </script>
 
-<button
-	class="group first:border-t-2 border-black last:border-b-2 relative"
-	on:click={() => (open = !open)}
->
-	<div class="flex justify-between py-4 text-left items-end">
-		<div class="flex flex-col gap-1 w-full">
-			<div class="flex flex-col gap-1 sm:flex-row-reverse sm:justify-between w-full">
-				<div class="font-light text-sm">{experience.date}</div>
-				<div class="text-xl font-bold group-hover:text-yellow-beer">
-					{experience.title}
-				</div>
-			</div>
-			<div class="text-base">
-				{experience.company}
-			</div>
+<button class="group relative border-black first:border-t-2 last:border-b-2" on:click>
+	<div class="relative flex h-16 items-end justify-between py-4 text-left">
+		<div
+			class="absolute top-0 left-0 z-0 h-16 bg-black transition-all duration-300 ease-in-out {open
+				? 'w-full'
+				: 'w-0'}"
+		/>
+		<div
+			class="absolute top-0 left-0 z-0 h-16 bg-yellow-beer transition-all delay-75 duration-300 ease-in-out {open
+				? 'w-full'
+				: 'w-0'}"
+		/>
+		<div
+			class="absolute top-0 left-0 z-0 h-16 bg-magenta-cerise transition-all delay-150 duration-300 ease-in-out {open
+				? 'w-full'
+				: 'w-0'}"
+		/>
+		<div
+			class="z-10 px-4 text-xl group-hover:text-yellow-beer {open ? 'text-white' : 'text-black'}"
+		>
+			{experience.company}
 		</div>
 	</div>
+
 	<div
-		class="text-left duration-500 transition-height ease-in-out overflow-hidden pl-4 {open
-			? 'h-fit mb-4'
+		class="overflow-hidden pl-4 text-left transition-height duration-500 ease-in-out xl:hidden {open
+			? 'mb-4 h-fit pt-4'
 			: 'h-0'}"
 	>
-		<ul class="list-disc list-outside">
+		<ul class="list-outside list-disc">
 			{#each experience.desc as desc}
 				<li class="text-sm">{desc}</li>
 			{/each}
 		</ul>
 	</div>
+
 	<div
-		class="absolute right-0 top-11 duration-100 transition-transform {open
-			? 'opacity-100 rotate-90'
-			: 'md:opacity-0 group-hover:opacity-100'}"
+		class="absolute right-4 top-5 transition-transform duration-100 {open
+			? 'text-white opacity-100 rotate-90 xl:rotate-0'
+			: 'group-hover:opacity-100 md:opacity-0'}"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +50,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-6 h-6"
+			class="h-6 w-6"
 		>
 			<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
 		</svg>
