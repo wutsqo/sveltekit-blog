@@ -13,10 +13,10 @@
 </svelte:head>
 
 <div class="flex flex-col xl:flex-row">
-	<div class="w-full xl:w-1/3">
+	<div class="w-full xl:w-1/4">
 		<Side />
 	</div>
-	<div class="w-full xl:w-2/3">
+	<div class="w-full xl:w-3/4">
 		<Hero />
 		<SelectedWorks />
 		<Stack />
