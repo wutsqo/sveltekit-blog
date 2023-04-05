@@ -8,7 +8,7 @@
 		},
 		{
 			icon: '⚡',
-			text: 'Crafting apps using design & code'
+			text: 'Design & code'
 		},
 		{
 			icon: '📍',
@@ -18,7 +18,7 @@
 </script>
 
 <div
-	class="sticky top-16 flex xl:h-screen w-full flex-col justify-between gap-8 border-r-2 border-black bg-black py-14 px-4 text-white xl:px-8 2xl:py-20 2xl:px-20"
+	class="sticky top-16 flex w-full flex-col justify-between gap-8 border-r-2 border-black bg-black py-14 px-4 text-white xl:h-screen xl:px-8 2xl:py-20 2xl:px-20"
 >
 	<div class="flex flex-col justify-center gap-6">
 		<img src="/avatar.png" alt="avatar" class="h-28 w-28 rounded-full" />

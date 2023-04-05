@@ -2,7 +2,6 @@
 	import axios from 'axios';
 	import { onMount } from 'svelte';
 	import MusicPlayingIcon from './music-playing.svelte';
-	import SpotifyIcon from './spotify-icon.svelte';
 
 	let trackData: any;
 
@@ -26,27 +25,21 @@
 		class="aspect-square h-full"
 	/>
 
-	<div class="absolute aspect-square h-14">
-		<div class="absolute top-1.5 right-1.5">
-			<SpotifyIcon />
-		</div>
-	</div>
-
 	<div class="flex h-full flex-col justify-between pt-1 pb-1">
 		{#if trackData?.item?.id}
 			<div class="mb-1 flex items-baseline gap-2 text-xs font-medium text-gray-500">
 				<MusicPlayingIcon />
 				{#if trackData?.type === 'current'}
-					<span> Now playing </span>
+					<span> Now playing on Spotify </span>
 				{:else if trackData?.type === 'recent'}
-					<span> Last played </span>
+					<span> Last played on Spotify </span>
 				{/if}
 			</div>
 
-			<p class="text-sm">
+			<p>
 				<a
 					href="https://open.spotify.com/track/{trackData?.item?.id}"
-					class="text-sm font-semibold text-gray-300 hover:underline md:text-base"
+					class="text-xs font-semibold text-gray-300 hover:underline"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -54,7 +47,7 @@
 				</a>
 				<a
 					href="https://open.spotify.com/artist/{trackData?.item?.artists[0].id}"
-					class="text-xs text-gray-300 hover:underline md:text-sm"
+					class="text-xs text-gray-300 hover:underline"
 					target="_blank"
 					rel="noopener noreferrer"
 				>

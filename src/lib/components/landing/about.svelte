@@ -60,8 +60,8 @@
 	};
 
 	const phrases = [
-		'Grew up in a beautiful region of West Sumatra, I started to find my passion in technology and design since I was a kid.',
-		'Graduated from high school, I moved to Jakarta and my love for tech and design has grown stronger ever since.',
+		'Grew up in a beautiful region of West Sumatra, I started to find my passion in technology and design.',
+		'Graduated from high school, I moved to Jakarta and my love for them has grown stronger ever since.'
 	];
 	let phrase = phrases[0];
 	let words = phrase.split(' ');
@@ -100,7 +100,7 @@
 <Heading number="IV" text="About" />
 
 <div class="relative">
-	<div class="relative h-[120vh]" use:viewport on:enterViewport={enterViewport}>
+	<div class="relative h-screen" use:viewport on:enterViewport={enterViewport}>
 		<div class="h-full w-full bg-black">
 			<Map
 				accessToken="pk.eyJ1Ijoid3V0c3FvIiwiYSI6ImNsZWNwNXNqOTAwaXc0Mm1sc3VzOWEyZWEifQ.YcZR_USFcNObmZtviLB_Fw"
@@ -110,7 +110,7 @@
 		</div>
 	</div>
 	<div
-		class="absolute top-0 h-[120vh] w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/70 to-black p-4 text-lg text-white xl:p-8 xl:text-xl"
+		class="absolute top-0 h-screen w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent to-black p-4 text-lg text-white xl:p-8 xl:text-xl"
 		use:viewport
 		on:enterViewport={typing}
 	>
