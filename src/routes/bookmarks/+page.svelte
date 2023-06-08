@@ -60,29 +60,29 @@
 	<title>Bookmarks | Muhammad Urwatil Wutsqo</title>
 </svelte:head>
 
-<div class="mx-auto container xl:px-12 xl:grid xl:grid-cols-5 xl:gap-8 xl:py-8">
-	<div class="xl:col-span-2 sticky -top-40 bg-white xl:top-0 self-start z-50">
-		<h1 class="lg:mt-8 text-4xl lg:text-5xl grid-flow-col p-4">Bookmarks</h1>
-		<div class="mt-4 text-lg lg:text-2xl mb-6 h-12 mx-4">
+<div class="container mx-auto xl:grid xl:grid-cols-5 xl:gap-8 xl:px-12 xl:py-8">
+	<div class="sticky -top-40 z-50 self-start bg-white xl:sticky xl:top-20 xl:col-span-2">
+		<h1 class="grid-flow-col p-4 text-4xl lg:mt-8 lg:text-5xl">Bookmarks</h1>
+		<div class="mx-4 mt-4 mb-6 h-12 text-lg lg:text-2xl">
 			Articles and videos that I found interesting. ({bookmarks.length})
 		</div>
-		<div class="max-w-screen-md flex flex-col gap-4 py-4">
+		<div class="flex max-w-screen-md flex-col gap-4 py-4">
 			<input
 				type="text"
-				class="p-4 block border border-black mx-4"
+				class="mx-4 block border border-black p-4"
 				placeholder="Search bookmarks..."
 				bind:value={query}
 			/>
-			<div class="flex xl:flex-wrap overflow-auto xl:gap-2 px-4 pb-2">
+			<div class="flex overflow-auto px-4 pb-2 xl:flex-wrap xl:gap-2">
 				<button
-					class="px-3 py-1 text-xs border border-gray-700 text-gray-700 hover:bg-yellow-beer"
+					class="border border-gray-700 px-3 py-1 text-xs text-gray-700 hover:bg-yellow-beer"
 					on:click={() => onTagClick('')}
 				>
 					All
 				</button>
 				{#each allTags as tag}
 					<button
-						class="px-3 py-1 text-xs border-y border-r xl:border border-gray-700 text-gray-700 hover:bg-yellow-beer shrink-0"
+						class="shrink-0 border-y border-r border-gray-700 px-3 py-1 text-xs text-gray-700 hover:bg-yellow-beer xl:border"
 						on:click={() => onTagClick(`#${tag}`)}
 					>
 						{tag}
@@ -91,14 +91,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="xl:px-4 xl:pb-6 xl:col-span-3 p-4">
-		<div class="max-w-screen-md flex flex-col gap-4 mt-6">
+	<div class="p-4 xl:col-span-3 xl:px-4 xl:pb-6">
+		<div class="mt-6 flex max-w-screen-md flex-col gap-4">
 			{#each bookmarks as item (item.id)}
 				<a
 					href={item.url}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="px-4 xl:px-6 py-6 block float-brutalist bg-white hover:bg-gray-100"
+					class="float-brutalist block bg-white px-4 py-6 hover:bg-gray-100 xl:px-6"
 					in:receive={{ key: item.id }}
 					out:send={{ key: item.id }}
 					animate:flip={{
@@ -107,7 +107,7 @@
 				>
 					<h2 class="text-xl">{item.title}</h2>
 					<p class="mt-4 text-sm text-gray-700">{item.comment}</p>
-					<p class="mt-4 text-xs text-gray-500 truncate w-full">
+					<p class="mt-4 w-full truncate text-xs text-gray-500">
 						{item.url}
 					</p>
 					<p class="text-xs text-gray-500">
